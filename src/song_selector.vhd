@@ -6,7 +6,7 @@ ENTITY song_selector IS
     PORT (
         clk : IN STD_LOGIC;
         reset : IN STD_LOGIC;
-        song_id : IN STD_LOGIC_VECTOR(1 DOWNTO 0); -- ID de la cancion (0-3)
+        song_id : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- ID de la cancion (0-3)
         load_song : IN STD_LOGIC; -- Señal para cargar la cancion
 
         duration_out : OUT INTEGER; -- Duracion de la cancion en segundos
@@ -16,7 +16,7 @@ END ENTITY song_selector;
 
 ARCHITECTURE rtl OF song_selector IS
 
-    SIGNAL selected_id : STD_LOGIC_VECTOR(1 DOWNTO 0) := "00";
+    SIGNAL selected_id : STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
     SIGNAL duration_r : INTEGER := 0; -- Registro de duracion
     SIGNAL is_valid_r : STD_LOGIC := '0'; -- Registro de validez
 
@@ -26,7 +26,7 @@ BEGIN
     PROCESS (clk, reset)
     BEGIN
         IF reset = '1' THEN
-            selected_id <= "00";
+            selected_id <= "0000";
             duration_r <= 0;
             is_valid_r <= '0';
 
@@ -36,16 +36,16 @@ BEGIN
                 selected_id <= song_id;
 
                 CASE song_id IS
-                    WHEN "00" =>
+                    WHEN "0000" =>
                         duration_r <= 5; -- Duracion en segundos para la cancion 0
                         is_valid_r <= '1';
-                    WHEN "01" =>
+                    WHEN "0001" =>
                         duration_r <= 8; -- Duracion en segundos para la cancion 1
                         is_valid_r <= '1';
-                    WHEN "10" =>
+                    WHEN "0010" =>
                         duration_r <= 14; -- Duracion en segundos para la cancion 2
                         is_valid_r <= '1';
-                    WHEN "11" =>
+                    WHEN "0011" =>
                         duration_r <= 18; -- Duracion en segundos para la cancion 3
                         is_valid_r <= '1';
                     WHEN OTHERS =>
