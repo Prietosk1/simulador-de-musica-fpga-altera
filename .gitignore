@@ -1,0 +1,41 @@
+# === Simulación GHDL ===
+*.vcd
+*.ghw
+*.cf
+*.o
+work-obj*.cf
+
+# === Quartus Prime ===
+db/
+incremental_db/
+output_files/
+greybox_tmp/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.done
+*.bak
+*.sof
+*.pof
+
+# === ModelSim / Questa (por si lo usas después) ===
+modelsim.ini
+vsim.wlf
+transcript
+work/
+*.mpf
+*.mti
+
+# === Archivos temporales del sistema ===
+*.log
+*.tmp
+*.swp
+*.DS_Store
+
+# === VSCode ===
+.vscode/
+
+# === Python scripts ===
+__pycache__/
+*.pyc
